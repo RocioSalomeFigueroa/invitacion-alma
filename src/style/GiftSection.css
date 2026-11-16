@@ -1,0 +1,15 @@
+.gifts { display: grid; place-items: center; text-align: center; padding: 28px 0; height: 1200px; }
+.gifts__btn { width: fit-content; padding: 12px 22px; }
+
+@media (max-width: 900px) {
+    .gifts {
+        height: 400px;
+    }
+    .gifts__icon img{
+        width: 35px;
+        margin-top: 20px;
+    }
+    .gifts__btn{
+        padding: 10px 18px;
+    }
+}

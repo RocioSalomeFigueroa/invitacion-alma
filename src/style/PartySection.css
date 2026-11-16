@@ -1,0 +1,143 @@
+.party{
+    margin-top: 50px;
+}
+.party__content{
+  padding: clamp(48px, 8vw, 84px) 20px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.party__head{
+  text-align: center;
+  margin-bottom: clamp(24px, 6vw, 48px);
+}
+.party__title{
+  font-family: 'Parisienne', cursive;
+  font-size: clamp(42px, 6vw, 64px);
+  line-height: 1;
+  color: var(--falso-blanco);
+  margin: 0 0 10px;
+  font-weight: 400;
+}
+.party__subtitle{
+  font-family: 'Lora', serif;
+  font-size: clamp(18px, 3.6vw, 32px);
+  color: var(--verde-claro);
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+/* Grid de cards */
+.party__grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 28px);
+}
+
+/* Card */
+.party-card{
+  background: #f2d5d9;
+  border: 2px solid rgba(255,255,255,.6);
+  border-radius: calc(var(--radius) + 8px);
+  padding: clamp(24px, 5vw, 44px) clamp(18px, 4vw, 36px);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.party-card__title{
+  font-family: 'Parisienne', cursive;
+  color: var(--falso-negro);
+  font-size: clamp(28px, 4vw, 45px);
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+.party-card__icon{
+  display: grid;
+  place-items: center;
+  height: 110px;
+  margin: 6px 0 10px;
+}
+.party-card__text{
+  font-family: "Marcellus", Georgia, serif;
+  color: var(--verde-oscuro);
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 8px auto 22px;
+  max-width: 48ch;
+}
+
+/* Botón redondeado */
+.party-card__btn{
+  background: var(--verde-oscuro);
+  color: var(--falso-blanco);
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 26px;
+  font-family: "Fraunces", serif;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,.16);
+  transition: transform .12s ease, background .2s ease, color .2s ease;
+}
+.party-card__btn:hover{
+  background: var(--rosa);
+  color: var(--verde-oscuro);
+  transform: translateY(-1px);
+}
+
+.party-card__icon--music{
+    img{
+        width: 90px;
+    }
+}
+.party-card__icon--dress{
+    img{
+        width: 110px;
+    }
+}
+.party-card__icon--phone{
+    img{
+        width: 100px;
+    }
+}
+
+@media (max-width: 900px){
+  .party__grid{ grid-template-columns: 1fr;        width: 80%;
+        margin: auto; }
+  .party__title{
+    font-size: 25px;
+  }
+  .party__head {
+    margin-bottom: 40px;
+  }
+  .party__subtitle{
+        font-size: 15px;
+margin: 0 40px;
+line-height: 1.2;
+  }
+  .party-card__icon{
+    height: auto;
+  }
+  .party-card__title{
+    font-size: 25px;
+  }
+  .party-card__icon--music {
+    img {
+      width: 50px;
+    }
+  }
+  .party-card__text{
+    font-size: 15px;
+  }
+  .party-card{
+        align-items: center;
+ }
+ .party-card__btn{
+  padding: 10px 20px;
+  width: 80%;
+  font-size: 12px;
+ }
+}

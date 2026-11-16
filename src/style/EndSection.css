@@ -1,0 +1,133 @@
+.endSection{
+    position: relative;
+    overflow: hidden;
+    background-position: center top;
+    background-size: cover;
+    display: block;
+    min-height: 420px;
+}
+
+.endSection__inner{
+    display: flex;
+    flex-direction: column;
+    min-height: 420px;
+    justify-content: flex-start;
+}
+
+.imgEndSectionUp {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
+.imgEndSectionDown {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
+.container_EndSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(16px, 4vw, 80px);
+    flex: 1;
+    padding: 0 30px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.container_EndSection h2{
+    font-family: 'Parisienne', cursive;
+    font-size: clamp(48px, 7vw, 96px);
+    color: var(--falso-blanco);
+    margin: 0;
+    font-weight: 400;
+    line-height: 0.8;
+}
+
+.container_EndSection h4{
+    color: var(--verde-claro);
+    font-size: clamp(18px, 2.4vw, 28px);
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+.leftEndSection{
+    text-align: center;
+}
+
+.rightEndSection{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.rightEndSection ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rightEndSectionItem{
+    list-style: none;
+    margin: 0;
+}
+
+.endSection__btn{
+    display: inline-block;
+    text-decoration: none;
+    color: var(--falso-blanco);
+    background: rgba(123, 51, 70, 0.9);
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.14);
+    transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.endSection__btn:hover{
+    background: rgba(223, 227, 230, 0.9);
+    color: var(--falso-negro);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.16);
+}
+
+@media (max-width: 900px) {
+    .endSection{
+        width: 100%;
+        height: fit-content;
+    }
+    .container_EndSection{
+        gap:0;
+        height: 200px;
+    }
+    .leftEndSection{
+        h2{
+            font-size: 45px;
+            font-weight: 400;
+        }
+        h4{
+            font-size: 15px;
+            font-weight: 300;
+            margin-top: -10px;
+        }
+    }
+    .rightEndSectionItem{
+        font-size: 12px;
+        margin: 5px 0;
+        font-weight: 500;
+    }
+}

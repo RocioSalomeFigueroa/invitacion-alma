@@ -1,0 +1,22 @@
+.footer{
+    text-align: center;
+    h1{
+        font-family: "La Belle Aurore", cursive;
+        font-size: 35px;
+        color: var(--verde-claro);
+        margin: 0;
+        font-weight: 400;
+    }
+}
+
+@media (max-width: 900px) {
+    .footer{
+        .container{
+            max-width: 90%;
+            height: 50px;
+        }
+        h1{
+            font-size: 15px;
+        }
+    }
+}

@@ -1,0 +1,169 @@
+.modal__wrap{ position: relative; display: grid; place-items: center; }
+.modal__badge--outside{ position: absolute; top: -46px; left: 50%; transform: translateX(-50%); z-index: 2; background: var(--falso-blanco); border: 2px solid #dfe3e6; box-shadow: 0 12px 26px rgba(58,20,35,.12); }
+.modal__close--outside{ position: absolute; right: -10px; top: -12px; z-index: 2; background: var(--falso-blanco); color: var(--falso-negro); border: 2px solid #dfe3e6; box-shadow: 0 8px 18px rgba(58,20,35,.12); }
+
+/* Caja de datos bancarios */
+.bank-box{
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:14px;
+  padding:12px;
+  display:grid;
+  gap:10px;
+  background:#fff;
+}
+.bank-row{
+  display:grid;
+  grid-template-columns: 100px 1fr auto;
+  align-items:center;
+  gap:10px;
+}
+.bank-label{ color:#7b8b86; font-size:14px; }
+.bank-value{ color:var(--falso-negro); }
+.bank-value.code{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing:.4px; }
+
+.gifts__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.gifts__icon img { width: 64px; }
+
+.modal__body__gift{
+  display: flex;
+  justify-content: center;
+}
+
+/* Card contenedora */
+.gift-list-card{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:16px 18px;
+}
+
+/* Lista */
+.gift-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+}
+
+/* Ítem con “bullet” + dos columnas (label / valor) */
+.gift-item{
+  display:grid;
+  grid-template-columns: 0px 70px 1fr;  /* •  label  valor */
+  align-items:center;
+  gap:12px;
+  padding:10px 6px;
+}
+.gift-item::before{
+  content:"";
+  width:8px; 
+  height:8px;
+  border-radius:50%;
+  background: var(--verde-medio, #7b3346);
+}
+
+/* Label y valor */
+.gift-item__label{
+  font-family:"Fraunces", serif;
+  font-weight:700;
+  color: var(--verde-medio, #7b3346);
+}
+.gift-item__value{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  color: var(--falso-negro, #3a1423);
+}
+
+/* =========================================================
+   Botón copiar: solo ícono, sin fondo, en var(--verde-medio)
+   ========================================================= */
+.btn-copy.icon-only{
+  display: inline-grid;
+  place-items: center;
+  width: 36px;                 /* área clickeable accesible */
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;        /* no se ve, pero deja listo por si cambia */
+  background: transparent;     /* << sin fondo */
+  box-shadow: none;
+  cursor: pointer;
+  color: var(--verde-medio, #7b3346); /* << color del ícono */
+  transition: transform .08s ease, opacity .15s ease;
+}
+
+.btn-copy.icon-only:hover{
+  opacity: .8;                 /* feedback sutil sin fondo */
+}
+
+.btn-copy.icon-only:active{
+  transform: scale(0.96);
+}
+
+/* El glifo hereda el color del botón (currentColor) */
+.btn-copy.icon-only .material-symbols-outlined{
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 500,
+    "GRAD" 0,
+    "opsz" 24;
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* Estado OK (cuando copió): solo cambia el tono del ícono, sin fondo */
+.btn-copy.icon-only.is-ok{
+  color: #7b3346;              /* bordo más intenso para “ok” */
+  background: transparent;
+}
+
+/* Mensajito a la derecha del botón cuando copió */
+.copy-ok{
+  font-size:12px;
+  padding:2px 8px;
+  border-radius:999px;
+  background: #f9e4e8;
+  color:#5e1f2d;
+  border:1px solid #e7c7cf;
+  animation: fadeSlide .2s ease-out;
+}
+
+@keyframes fadeSlide {
+  from { opacity:0; transform: translateY(-2px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .gift-item{
+    align-items: anchor-center;
+  }
+  .gift-item__label{
+    opacity:.9;
+  }
+  .gift-item__value{
+    justify-content:space-between;
+  }
+  .gift-list-card{
+    width: 100%;
+    padding: 0px 16px 18px;
+  }
+  .gift-list{
+    width: 100%;
+  }
+
+  .btn-copy.icon-only{
+    width:34px;
+    height:34px;
+  }
+  .btn-copy.icon-only .material-symbols-outlined{
+    font-size:20px;
+  }
+}

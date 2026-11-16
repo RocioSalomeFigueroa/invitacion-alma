@@ -1,0 +1,75 @@
+
+.modal__header__contact{  
+    position: sticky; top: 0; z-index: 2;
+    background: var(--falso-blanco);
+  padding: 24px 30px 8px;
+  margin-top: 7%;
+}
+
+.modal__body__contact{
+    margin: 20px 0;
+  }
+
+  .contact-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:14px;
+  margin-top:12px;
+}
+
+@media (max-width: 640px){
+  .contact-grid{ grid-template-columns: 1fr; }
+}
+
+/* Tarjeta con nombre arriba y botón abajo */
+.contact-card{
+  padding:16px 14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+.contact-label{
+  text-align:center;
+  line-height:1.2;
+}
+.contact-name{
+  font-weight:600;
+  color: var(--falso-negro);
+}
+.contact-note{
+  display:block;
+  font-size:15px;
+  color:var(--verde-oscuro);
+  margin-top:2px;
+}
+
+/* Botón de WhatsApp (reusa tu estilo y lo hace full width dentro de la card) */
+.contact-btn{
+  width:50%;
+  text-align:center;
+}
+.btn-whatsapp{
+  background:var(--verde-claro);
+  color:var(--falso-blanco);
+  border:none;
+  border-radius:999px;
+  padding:10px 16px;
+  cursor:pointer;
+  text-decoration:none;
+  font-family:"Fraunces", serif;
+  letter-spacing:.5px;
+  font-size:15px;
+  box-shadow:0 0 5px -1px rgba(0,0,0,.40);
+}
+.btn-whatsapp:hover{ background:var(--rosa);
+color: var(--falso-negro); }
+
+@media (max-width: 900px) {
+.party-card__icon--phone {
+    img {
+      width: 60px;
+    }
+  }
+}

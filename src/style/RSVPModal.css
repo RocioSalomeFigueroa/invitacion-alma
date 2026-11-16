@@ -1,0 +1,137 @@
+.modal{
+  position: fixed; inset: 0; z-index: 1000;
+  display: grid; place-items: center;
+  padding: 24px;
+  background:var(--verde-oscuro, rgba(123,51,70,.75));
+}
+.modal__backdrop{ position: absolute; inset: 0; z-index: 0; }
+
+.modal__panel{
+  position: relative; z-index: 1;
+  width: min(92vw, 720px);
+  max-height: 90dvh;
+  background: var(--falso-blanco);
+  border-radius: 50px;
+  display: grid;
+  grid-template-rows: auto minmax(0,1fr) auto;
+  overflow: hidden;
+}
+
+/* Header */
+.modal__header{ position: sticky; top: 0; z-index: 2; background: var(--falso-blanco); padding: 24px 30px 8px; }
+.modal__title{ font-family:"Fraunces",serif; color:var(--falso-negro); text-align:center; font-size:30px; line-height:35px; margin:0; }
+.modal__close{ position:absolute; right:14px; top:14px; width:40px; height:40px; border:0; border-radius:50%;
+  background:var(--verde-claro); color:var(--falso-blanco); font-size:22px; line-height:40px; cursor:pointer; box-shadow:0 0 5px -1px rgba(0,0,0,.5); }
+
+/* Body & Footer */
+.modal__body{ overflow:auto; padding:0 30px 16px; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; scrollbar-gutter:stable both-edges; }
+.modal__actions{ position:sticky; bottom:0; z-index:2; background:var(--falso-blanco); padding:12px 16px; display:flex; gap:12px; justify-content:flex-end; }
+
+/* Form */
+.modal__form{ margin:5% 10%; }
+.modal__form label{ display:block; margin-bottom:14px; }
+.modal__form label>span{ display:block; font-size:15px; color:var(--falso-negro); margin-bottom:6px; font-family:'fraunces',serif; }
+.modal__form input,.modal__form textarea{ width:-webkit-fill-available; border:1px solid #eadfd6; border-radius:10px; padding:10px 12px; font-size:15px; outline:none; }
+.modal__form input:focus,.modal__form textarea:focus{ border-color:#7b3346; box-shadow:0 0 0 3px rgba(123,51,70,.15); }
+.form-data{ display:flex; flex-direction: column;}
+@media (max-width:560px){ .form-data{ grid-template-columns:1fr; } }
+
+.rsvp-row{ display:flex; gap:18px; margin:6px 0 10px; justify-content:center; }
+.rsvp-radio{ display:flex; align-items:center; gap:8px; }
+.rsvp-check{ display:flex; align-items:center; gap:8px; }
+.modal__form input[type="checkbox"], .modal__form input[type="radio"]{ width:auto; height:auto; margin:0; flex:0 0 auto; }
+.modal__form label.rsvp-radio>span, .modal__form label.rsvp-check>span{ display:inline; margin:0; }
+
+.modal__form select{
+  width:100%; border:1px solid #eadfd6; border-radius:10px; padding:10px 36px 10px 12px; font-size:15px; outline:none; background:#fff;
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%237b8b86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+  background-repeat:no-repeat; background-position:right 12px center; background-size:12px 12px;
+}
+.modal__form select:focus{ border-color:#7b3346; box-shadow:0 0 0 3px rgba(123,51,70,.15); }
+.modal__form select:invalid{ color:#7b8b86; }
+.modal__form select::-ms-expand{ display:none; }
+
+.btn-add-companion,.btn-remove{
+  margin-top:6px; background:var(--verde-claro); color:var(--falso-blanco); border:0; border-radius:999px; padding:12px 20px; cursor:pointer;
+ font-family:"Fraunces",serif; text-transform:uppercase; text-decoration:none; letter-spacing:.5px; font-size:15px; font-weight:400; box-shadow:0 0 5px -1px rgba(0,0,0,.40);
+}
+.companion{
+  border-radius: 20px;
+}
+
+.btn-add-companion:hover,.btn-remove:hover{ background:var(--verde-oscuro); color:var(--falso-blanco); }
+.btn-remove{ width:25%; } .btn-add-companion{ width:50%; margin-bottom:20px; }
+.modal__actions .btn--confirm,.modal__actions .btn-cancel{ border:1px solid rgba(58,2,10,.18); border-radius:999px; padding:12px 20px; cursor:pointer; font-family:"Fraunces",serif; text-transform:uppercase; text-decoration:none; width:fit-content; letter-spacing:.5px; font-size:15px; font-weight:400; box-shadow:0 0 5px -1px rgba(0,0,0,.20); transition: transform .12s ease, filter .2s ease, background .2s ease; }
+.modal__actions .btn-cancel{ background:#e8eaeb; color:#3a020a; }
+.modal__actions .btn--confirm{ background:#7b3346; color:#fcfcfc; }
+.btn-cancel:hover{ background:#dfe3e6; color:#3a020a; transform: translateY(-1px); }
+.btn--confirm:hover{ background:#5e1f2d; color:#fcfcfc; transform: translateY(-1px); }
+
+/* =========================
+   SOLO PARA ESTE MODAL (rsvp)
+   ========================= */
+.modal--rsvp .modal__wrap{ position:relative; display:grid; place-items:center; }
+
+/* Sobrescribe el estilo global: SIN fondo, SIN borde, SIN sombra */
+.modal--rsvp .modal__badge--outside{
+  position:absolute;
+  left:50%;
+  top:-12%;                      /* cuánto “asoma” por fuera */
+  transform:translateX(-50%);
+  z-index: -1;
+  display:block;
+  width: 220px;   /* responsive sin romper */
+  height:auto;
+  pointer-events:none;
+  background:none !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  padding:0 !important;
+}
+.modal--rsvp .modal__badge--outside img{ display:block; width:100%; height:auto; }
+
+/* Botón X flotante (independiente) */
+.modal--rsvp .modal__close--outside{ position:absolute; right:-12px; top:-12px; z-index:4; }
+
+/* Deja espacio para que el adorno no tape el título */
+.modal--rsvp .modal__header--spacer{ margin-top:9%; }
+@media (max-width:900px){
+  .modal--rsvp .modal__header--spacer{ margin-top:0; }
+  .modal--rsvp .modal__badge--outside{
+    top: -10%;
+  }
+  .modal--rsvp .modal__badge--outside{
+    width: 150px;
+  }
+  .btn-add-companion{
+    width: 100%;
+  }
+  .btn-remove {
+    width: 100%;
+  }
+  .modal__title{
+    font-size:20px;
+    line-height:25px;
+  }
+  .modal__form label>span {
+    font-size: 12px;
+  }
+  .modal{
+    padding: 0;
+  }
+  .modal__body{
+    padding: 0 15px 10px;
+  }
+  .rsvp-check{
+    display: flex !important;
+    gap: 15px;
+  }
+  .modal__actions{
+    padding: 0 12px 16px;
+  }
+  .modal__actions .btn--confirm, .modal__actions .btn-cancel{
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+}

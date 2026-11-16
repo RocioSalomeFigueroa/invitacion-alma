@@ -1,0 +1,70 @@
+/* cuerpo del Dress Code */
+.dc-body { padding-bottom: 10px; }
+.dc-lead {
+  text-align: center;
+  margin: 2px 0 14px;
+  color: var(--falso-negro);
+}
+.dc-list {
+  margin: 0 0 12px;
+  padding-left: 1.1rem;
+  color: var(--falso-negro);
+}
+.dc-block { margin-top: 8px; }
+.dc-block__title { display: block; font-size: 14px; margin-bottom: 6px; color: #7b8b86; }
+
+.dc-palette { display: flex; gap: 8px; align-items: center; }
+.dc-chip {
+  width: 26px; height: 26px; border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+.modal__badge--outside{
+  position: absolute;
+  left: 50%;
+  top: -56px;                     /* que “asome” */
+  transform: translateX(-50%);
+  width: 112px; 
+  height: 112px;
+  border-radius: 50%;
+  background: var(--falso-blanco);
+  box-shadow: 0 16px 30px rgba(0,0,0,.15);
+  display: grid; place-items: center;
+  pointer-events: none;           /* que no tape clicks */
+  z-index: 3; 
+  img{
+    width: 55px;
+  }                    /* sobre el panel */
+}
+
+.modal__body.dc-body {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  }
+
+  .heart-list{ list-style:none; padding:0; margin:0 }
+.heart-list li{
+  display:flex; gap:.5rem; align-items:center;
+  margin:.5rem 0; color:var(--falso-negro);
+  font-size: 20px;
+}
+.icon-heart{ color:var(--rosa); font-size:15px; line-height:1 }
+
+@media (max-width: 900px) {
+.party-card__icon--dress {
+    img {
+      width: 60px;
+    }
+  }
+  .modal__badge--outside{
+    width: 80px;
+    height: 80px;
+  }
+  .heart-list li{
+    font-size: 15px;
+  }
+  .icon-heart{
+    font-size: 10px;
+  }
+}

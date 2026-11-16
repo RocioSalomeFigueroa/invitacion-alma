@@ -1,0 +1,75 @@
+
+.details-divider{
+  position: relative;
+  background: var(--falso-blanco);              /* mismo fondo que la página */
+  padding: 26px 0 48px;                /* aire arriba/abajo */
+}
+
+.details-lines{
+  display: block;
+  width: 100vw;
+  margin-top: 120px;
+  height: clamp(120px, 22vw, 210px);
+  stroke: var(--verde-claro);                     /* gris suave tipo referencia */
+  stroke-width: 1.5;
+  fill: none;
+  opacity: .9;
+}
+.details-lines path{
+  vector-effect: non-scaling-stroke;   /* mantiene grosor al escalar */
+}
+.details-lines path:nth-child(2){ opacity: .95; }
+.details-lines path:nth-child(3){ opacity: .85; }
+
+/* Badge centrado sobre las líneas */
+.details-badge{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);    /* subilo/bajalo si querés */
+  z-index: 1;
+}
+.details-badge__circle{
+  width: 180px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background: var(--verde-oscuro);             /* peach suave; ajustá al gusto */
+  box-shadow: 0 16px 30px rgba(0,0,0,.16);
+  display: grid;
+  place-items: center;
+}
+
+/* Ícono con animación (flota + ligera rotación) */
+.details-badge__icon{
+  width: 90px;
+  height: auto;
+  animation: wiggleFloat 2.8s ease-in-out infinite;
+  transform-origin: center;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.08));
+}
+
+.details-divider-fullbleed{
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100%;
+    isolation: isolate; /* que la burbuja haga sombra sobre la imagen */
+}
+
+@keyframes wiggleFloat{
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50%     { transform: translateY(-6px) rotate(-8deg); }
+}
+
+@media (max-width: 900px){
+  .details-divider{ padding-bottom: 36px; }
+  .details-badge{ transform: translate(-50%, -50%); }
+  .details-lines{
+    margin-top: 60px;
+  }
+  .details-badge__circle{ width: 90px; }
+  .details-badge__icon{ width: 45px; }
+}

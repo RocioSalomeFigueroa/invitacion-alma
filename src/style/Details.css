@@ -1,0 +1,135 @@
+.fiesta{
+    width: 30%;
+}
+
+.card-fiesta{
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    align-items: center;
+}
+
+.event-day{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+.event-day h1, 
+.event-day p, 
+.event-place h1, 
+.event-place p,
+.event-address h1,
+.event-address p{
+    margin: 0;
+}
+
+.event-day h1,
+.event-place h1,
+.event-address h1{
+  font-size: 40px;
+  margin-bottom: 10px;
+  font-family: 'Parisienne', cursive;
+  color: var(--falso-blanco);
+  font-weight: 400;
+}
+.event-day p,
+.event-place p,
+.event-address p{
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Lora', serif;
+    color: var(--verde-claro);
+}
+
+.event-place,
+.event-address{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.btn-confirm,
+.btn-address,
+.btn-map {
+    margin-top: 20px;
+    background: var(--verde-claro);
+    color: var(--falso-negro);
+    border:none; 
+    border-radius:999px; 
+    padding:12px 20px; 
+    cursor:pointer;
+    font-family: 'Lora', serif;
+    text-decoration: none;
+      text-transform:uppercase;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    font-weight: 400;
+    box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.40);
+}
+
+.btn-confirm:hover,
+.btn-map:hover,
+.btn-address:hover{
+    background: var(--verde-oscuro);
+    color: var(--falso-blanco);
+}
+
+.addeventatc,
+.addeventatc:link,
+.addeventatc:visited{
+  display:block;
+  margin-top:20px;
+  background: var(--verde-claro) !important;
+  color: var(--falso-negro) !important;
+  border:none;
+  border-radius:999px;
+  padding:12px 20px;
+  cursor:pointer;
+  font-family: 'Lora', serif;
+  text-transform:uppercase;
+  text-decoration:none;
+  width:100%;
+  text-align:center;
+  letter-spacing:.5px;
+  font-size:15px;
+  font-weight:400;
+  box-shadow:0 0 5px -1px rgba(0,0,0,.40);
+  z-index: 1;
+}
+
+.addeventatc:hover,
+.addeventatc:focus{
+  background:var(--verde-oscuro) !important;
+  color:var(--falso-blanco) !important;
+  outline:none;
+}
+
+.addeventatc .addeventatc_icon{
+    display: none;
+}
+
+@media (max-width: 900px){
+  .fiesta{
+    width: 50%;
+  }
+  .event-day h1, .event-place h1, .event-address h1 {
+    font-size: 25px;
+  }
+  .event-day p, .event-place p, .event-address p {
+    font-size: 15px;
+  }
+  .addeventatc, .addeventatc:link, .addeventatc:visited{
+    padding: 10px 12px;
+    width: 80%;
+    font-size: 12px;
+  }
+  .btn-confirm, .btn-address, .btn-map{
+    padding: 10px 12px;
+    width: fit-content;
+    font-size: 12px;
+  }
+}

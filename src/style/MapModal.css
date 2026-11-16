@@ -1,0 +1,95 @@
+.gm-modal{
+  position: fixed; inset: 0;
+  background:var(--verde-oscuro, rgba(123,51,70,.75));
+  display: grid; 
+  place-items: center;
+  z-index: 9999;
+}
+
+.gm-panel{
+  position: relative;
+  width: 40% ;
+  background: var(--falso-blanco);
+  border-radius: 50px;
+  padding: 15px 15px 30px 15px; 
+  box-shadow: 0 10px 30px var(--rosa);
+  h2{
+    font-family: "Fraunces", serif;
+    color: var(--falso-negro);
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+    margin: 20px 0;
+  }
+  iframe {
+    margin-bottom: 25px;
+  }
+}
+
+
+.gm-close{
+    position: absolute; 
+    right: 0; 
+    top: -15px;
+    width: 40px; 
+    height: 40px; 
+    border: 0; 
+    border-radius: 50%;
+    background: var(--verde-claro); 
+    color: var(--falso-blanco); 
+    font-size: 22px; 
+    cursor: pointer;
+    line-height: 40px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px -1px;
+}
+
+.gm-figure{
+  position: absolute;
+  top: -10%;                 /* asoma por fuera */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;       /* no bloquea clicks */
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.25));
+  animation: bob 4s ease-in-out infinite; /* opcional: flotando suave */
+}
+.gm-panel .btn-map{
+  display: flex;
+  justify-content: center;
+  width: fit-content;                  /* deja de ocupar el 100% */
+  padding: 12px 28px;
+  margin: 0 auto;               /* lo centra horizontalmente */
+  text-align: center;
+}
+/* Adorno superior anclado al panel (no se mueve) */
+.gm-band{
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -45%);   /* cuánto “asoma” sobre el borde */
+  width: clamp(260px, 62vw, 520px);   /* responsive sin romper */
+  height: auto;
+  pointer-events: none;               /* no tapa clics */
+  z-index: -1;                         /* detrás del contenido */
+}
+
+/* Asegura que la X quede por encima del adorno */
+.gm-close{ z-index: 2; }
+
+@media (max-width:900px){
+  .gm-panel{
+    width: 90%;
+    h2{
+      font-size: 20px;
+      line-height: 15px;
+    }
+  }
+  .gm-band{
+    width: clamp(260px, 110vw, 520px);
+  }
+  .gm-panel .btn-map {
+    padding: 10px 20px;
+  }
+}

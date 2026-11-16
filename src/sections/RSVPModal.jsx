@@ -1,0 +1,171 @@
+import { useEffect, useRef, useState } from "react";
+import { supabase } from "../lib/supabase";
+import "../style/RSVPModal.css";
+
+/** Inserta SOLO las 4 columnas requeridas */
+async function saveRsvpToSupabase({ first_name, last_name, phone, attending }) {
+  const rsvpRow = {
+    first_name: first_name?.trim() || "",
+    last_name : last_name?.trim()  || "",
+    phone     : phone || null,
+    attending : !!attending,
+  };
+
+  const { data: rsvp, error } = await supabase
+    .from("rsvps")
+    .insert(rsvpRow)
+    .select("id")
+    .single();
+
+  if (error) throw error;
+  return rsvp.id;
+}
+
+export default function RSVPModal({ open, onClose, onSubmit }) {
+  const dialogRef = useRef(null);
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName]   = useState("");
+  const [phone, setPhone]         = useState("");
+  const [attending, setAttending] = useState(null);
+  const [loading, setLoading]     = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && onClose?.();
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  useEffect(() => {
+    if (open) dialogRef.current?.querySelector("input")?.focus();
+  }, [open]);
+
+  if (!open) return null;
+
+  const normalizePhone = (raw) =>
+    raw.trim().replace(/[^\d+]/g, "").replace(/(?!^)\+/g, "");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+
+    const payload = {
+      first_name: firstName,
+      last_name : lastName,
+      phone     : normalizePhone(phone),
+      attending : attending === true,
+    };
+
+    try {
+      if (onSubmit) {
+        await onSubmit(payload); // si querés interceptar afuera
+      } else {
+        await saveRsvpToSupabase(payload); // inserta directo en Supabase
+      }
+
+      onClose?.();
+      // reset
+      setFirstName(""); setLastName(""); setPhone("");
+      setAttending(null);
+    } catch (err) {
+      console.error("Error guardando RSVP", err);
+      alert("No pude guardar tu confirmación: " + (err?.message || ""));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="modal modal--rsvp" role="dialog" aria-modal="true" aria-label="Confirmar asistencia">
+      <div className="modal__backdrop" onClick={onClose} />
+
+      <div className="modal__wrap" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="modal__close modal__close--outside"
+          onClick={onClose}
+          aria-label="Cerrar"
+          disabled={loading}
+        >
+          ×
+        </button>
+
+        <div className="modal__panel" ref={dialogRef}>
+          <div className="modal__header modal__header--spacer">
+            <h2 className="modal__title">Confirmar asistencia</h2>
+          </div>
+
+          <div className="modal__body">
+            <form id="rsvp-form" onSubmit={handleSubmit} className="modal__form" aria-busy={loading}>
+              <fieldset disabled={loading} style={{ border: 0, padding: 0, margin: 0 }}>
+                <div className="form-data">
+                  <label>
+                    <span>Nombre</span>
+                    <input required value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                  </label>
+                  <label>
+                    <span>Apellido</span>
+                    <input required value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                  </label>
+                </div>
+
+                <label>
+                  <span>Teléfono</span>
+                  <input
+                    type="tel"
+                    required
+                    inputMode="tel"
+                    autoComplete="tel"
+                    pattern="[0-9+()\\-\\s]{7,20}"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    title="Ingresá un teléfono válido (7 a 20 caracteres)."
+                  />
+                </label>
+
+                <div className="rsvp-row" role="radiogroup" aria-label="Asistencia">
+                  <label className="rsvp-radio">
+                    <input
+                      type="radio"
+                      name="attend"
+                      value="yes"
+                      checked={attending === true}
+                      onChange={() => setAttending(true)}
+                      required
+                    />
+                    <span>Asistiré</span>
+                  </label>
+                  <label className="rsvp-radio">
+                    <input
+                      type="radio"
+                      name="attend"
+                      value="no"
+                      checked={attending === false}
+                      onChange={() => setAttending(false)}
+                    />
+                    <span>No puedo asistir</span>
+                  </label>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+
+          <div className="modal__actions">
+            <button type="button" className="btn-cancel" onClick={onClose} disabled={loading}>
+              Cancelar
+            </button>
+            <button type="submit" form="rsvp-form" className="btn--confirm" disabled={loading || attending === null}>
+              {loading ? "Guardando…" : "Confirmar"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

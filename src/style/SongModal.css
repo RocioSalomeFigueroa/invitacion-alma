@@ -1,0 +1,33 @@
+.modal__header__music{
+        position: sticky; top: 0; z-index: 2;
+        background: var(--falso-blanco);
+        padding: 24px 30px 8px;
+        margin-top: 7%;
+        }
+
+        .modal__form.music{
+    margin: 2%;
+}
+.modal__close--outside{
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--verde-claro);
+  color: var(--falso-blanco);
+  font-size: 22px;
+  line-height: 44px;
+  cursor: pointer;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,.5);
+  z-index: 3;
+}
+
+@media (max-width: 900px){
+  .modal__badge--outside{
+    width: 80px;
+    height: 80px;
+  }
+}

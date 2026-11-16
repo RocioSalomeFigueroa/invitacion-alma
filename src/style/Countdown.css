@@ -1,0 +1,111 @@
+/* === Full-bleed dentro de un contenedor centrado === */
+.fullbleed{
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  width: 100vw;           /* evita desbordes raros en iOS */
+  max-width: 100vw;
+}
+
+/* La propia sección del contador: solapá con el hero */
+.countdown{
+  position: relative;
+  z-index: 2;             /* por encima del hero, pero transparente */
+  --overlap: clamp(140px, 22vw, 320px);
+  margin-top: calc(var(--overlap) * -1); /* sube la sección */
+  background: transparent;               /* NO pintes fondo */
+}
+
+/* Imagen de olas sin empujar con margin negativo */
+.countdown__bg{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin: 0;              /* quitamos el -25% */
+}
+
+/* Burbuja centrada (Safari iOS friendly) */
+.countdown__bubble{
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%); /* en vez de 'translate:' */
+  width: clamp(190px, 31vw, 300px); /* marco más pequeño sin perder el centro */
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-content: center;
+  padding: 24px 18px;
+  text-align: center;
+}
+
+/* Tipografías del contador (sin cambios de diseño) */
+.countdown__title{
+  margin: 0 0 30px;
+  font-family: 'Parisienne', cursive;
+  font-weight: 700;
+  color: #e7c7cf;
+  font-size: 70px;
+}
+.countdown__grid{
+  display: grid;
+  grid-auto-flow: column;
+  align-items: end;
+  justify-content: center;
+  gap: 20px;
+}
+.countdown__num{
+  font-family: "Fraunces", serif;
+  color: #3a1423;
+  font-size: clamp(28px, 6vw, 56px);
+  line-height: 1;
+}
+.countdown__label{
+  font-family: "Marcellus", Georgia, serif;
+  color: #8a586b;
+  font-size: clamp(12px, 3vw, 20px);
+}
+.countdown__sep{
+  width: 1px;
+  height: clamp(24px, 5vw, 36px);
+  background: rgba(0,0,0,.12);
+  align-self: center;
+}
+
+/* Corazón */
+.countdown__heart{
+  margin: 30px auto 0;
+  width: 100px;
+  height: auto;
+  display: block;
+  animation: heartPulse 3s ease-in-out infinite;
+  transform-origin: center;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.12));
+  pointer-events: none;
+}
+@keyframes heartPulse {
+  0%   { transform: scale(0.8); }
+  50%  { transform: scale(1.14); }
+  100% { transform: scale(0.8); }
+}
+@media (prefers-reduced-motion: reduce){
+  .countdown__heart{ animation: none; }
+}
+
+/* ====== Mobile tweaks (incluye iPhone) ====== */
+@media (max-width: 900px){
+  .countdown{
+    --overlap: clamp(120px, 28vw, 260px);
+  }
+  .countdown__title{ font-size: 20px; margin: 0 0 10px; }
+  .countdown__grid { gap: 5px; }
+  .countdown__heart{ width: 22px; margin: 10px auto 0; }
+  .countdown__num{ font-size: 15px; }
+  .countdown__label{ font-size: 10px; }
+  .countdown__sep{ height: 15px; }
+}
+
+/* iOS Safari: evita un posible “salto” vertical por zoom/teclado */
+@supports (-webkit-touch-callout: none){
+  .fullbleed{ width: 100vw; max-width: 100vw; }
+}
